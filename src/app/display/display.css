@@ -1,0 +1,1628 @@
+/* =========================================================
+   Display Adzan Masjid — Elegant Slate & Navy
+   5 Warna: #1C1D37 · #445A79 · #84A2C9 · #D6E0EA · #FFFFFF
+   ========================================================= */
+
+:root {
+    --c-1: #1C1D37;   /* Very Dark Navy — header, jam, running text, teks utama */
+    --c-2: #445A79;   /* Slate Blue — aksen utama, border aktif */
+    --c-3: #84A2C9;   /* Soft Blue — teks sekunder, label, glow */
+    --c-4: #D6E0EA;   /* Light Grayish Blue — background layar, divider */
+    --c-5: #FFFFFF;   /* Pure White — kartu, teks di atas gelap */
+
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 4px 16px rgba(28,29,55,0.08);
+    --shadow-lg: 0 10px 40px rgba(28,29,55,0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 50% 30%, #FFFFFF 0%, var(--c-4) 75%, #CAD7E4 100%);
+    color: var(--c-1);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===== APP CONTAINER ===== */
+.app-container {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px 10px 20px;
+    gap: 10px;
+    transform-origin: top left;
+    box-sizing: border-box;
+}
+
+/* ===== HEADER ===== */
+.header-bar {
+    background: linear-gradient(135deg, var(--c-1) 0%, #292a4a 50%, var(--c-2) 100%);
+    border-radius: var(--radius-lg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--c-5);
+    box-shadow: var(--shadow-lg);
+    border-bottom: 4px solid var(--c-3);
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-width: 0;
+    flex: 1;
+    margin-right: 24px;
+}
+
+.mosque-icon-wrap {
+    font-size: 48px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(132,162,201,0.5));
+    flex-shrink: 0;
+}
+
+.mosque-text-wrap {
+    min-width: 0;
+    flex: 1;
+}
+
+.mosque-text-wrap h1 {
+    font-size: clamp(26px, 2.4vw, 38px);
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mosque-text-wrap p {
+    font-size: clamp(14px, 1.2vw, 18px);
+    color: var(--c-3);
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-right {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.date-masehi {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.date-hijri {
+    font-size: 20px;
+    color: var(--c-3);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ===== BODY ===== */
+.body-content {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+}
+
+/* --- KIRI --- */
+.left-col {
+    width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+/* ---- JAM ---- */
+.clock-card {
+    background: linear-gradient(160deg, var(--c-1) 0%, #252646 100%);
+    border-radius: var(--radius-lg);
+    padding: 36px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(68,90,121,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.clock-card::before {
+    content: '';
+    position: absolute;
+    top: -40%; left: -40%; width: 180%; height: 180%;
+    background: radial-gradient(circle at center, rgba(132,162,201,0.15) 0%, transparent 55%);
+    pointer-events: none;
+}
+
+/* Dekorasi garis tipis di atas & bawah jam */
+.clock-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--c-3), transparent);
+    pointer-events: none;
+}
+
+.clock-face {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.clock-digits {
+    font-size: 160px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--c-5);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+    text-shadow: 0 0 30px rgba(132,162,201,0.5), 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.clock-colon {
+    font-size: 140px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--c-3);
+    margin: 0 6px;
+    text-shadow: 0 0 25px rgba(132,162,201,0.7);
+    animation: blink 1s step-start infinite;
+    transform: translateY(-10px);
+}
+
+@keyframes blink { 50% { opacity: 0.15; } }
+
+.clock-secs {
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--c-3);
+    font-variant-numeric: tabular-nums;
+    margin-left: 10px;
+    opacity: 0.9;
+}
+
+.clock-wib {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--c-3);
+    letter-spacing: 6px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Clock Countdown Badge (Persistent Pill Badge matching reference design) */
+.clock-countdown-badge {
+    margin-top: 16px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-radius: 9999px;
+    padding: 6px 12px 6px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.clock-countdown-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.clock-countdown-label strong {
+    color: var(--c-5);
+    font-weight: 900;
+}
+
+.clock-countdown-timer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--c-2) 0%, var(--c-1) 100%);
+    border: 2px solid var(--c-3);
+    border-radius: 9999px;
+    padding: 6px 16px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 12px rgba(52, 211, 153, 0.2);
+}
+
+/* ---- HADITS ---- */
+.hadits-box {
+    background: var(--c-5);
+    border-radius: var(--radius-lg);
+    padding: 20px 28px;
+    box-shadow: var(--shadow-lg);
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid rgba(28,29,55,0.08);
+    border-top: 5px solid var(--c-1);
+    overflow: hidden;
+    position: relative;
+}
+
+.hadits-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--c-4);
+    flex-shrink: 0;
+}
+
+.hadits-header-badge {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--c-2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hadits-counter {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--c-2);
+    background: var(--c-4);
+    padding: 2px 10px;
+    border-radius: 12px;
+}
+
+.hadits-ornament-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--c-3);
+    font-size: 14px;
+    margin: 4px 0;
+    opacity: 0.8;
+}
+
+.hadits-ornament-divider::before,
+.hadits-ornament-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 90px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--c-3), transparent);
+}
+
+.hadits-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 34px;
+    line-height: 1.55;
+    text-align: center;
+    color: var(--c-1);
+    direction: rtl;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.hadits-translation {
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--c-1);
+    text-align: center;
+}
+
+.hadits-source {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-2);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* --- KANAN (Slideshow) --- */
+.right-col {
+    flex: 1;
+    border-radius: var(--radius-lg);
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    background: var(--c-1);
+    border: 3px solid var(--c-5);
+    outline: 3px solid var(--c-2);
+    outline-offset: -6px;
+}
+
+.slideshow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    overflow: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide-bg {
+    position: absolute;
+    top: -5%; left: -5%;
+    width: 110%; height: 110%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(35px) brightness(0.35);
+    z-index: 1;
+}
+
+.slide-fg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+}
+
+/* Countdown Float */
+.countdown-float {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    z-index: 15;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 9999px;
+    padding: 8px 12px 8px 20px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.2), 0 0 0 1.5px rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+}
+
+.countdown-label {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--c-1);
+    letter-spacing: 0.5px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.countdown-label span {
+    color: var(--c-2);
+    font-weight: 900;
+}
+
+.countdown-value {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--c-2) 0%, var(--c-1) 100%);
+    border: 2px solid var(--c-3);
+    border-radius: 9999px;
+    padding: 6px 18px;
+    font-size: 28px;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18), 0 0 14px rgba(52, 211, 153, 0.25);
+}
+
+/* ===== JADWAL SHOLAT ===== */
+.prayer-bar {
+    display: flex;
+    height: 150px;
+    background: var(--c-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid rgba(28,29,55,0.08);
+    border-bottom: 5px solid var(--c-1);
+}
+
+.prayer-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--c-4);
+    transition: all 0.4s ease;
+    border-top: 5px solid transparent;
+}
+
+.prayer-box:last-child {
+    border-right: none;
+}
+
+.prayer-label {
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--c-3);
+    margin-bottom: 6px;
+}
+
+.prayer-time {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--c-1);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.prayer-iqamah {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-3);
+    margin-top: 8px;
+    min-height: 20px;
+    letter-spacing: 1px;
+}
+
+.prayer-iqamah span {
+    color: var(--c-2);
+    font-weight: 800;
+}
+
+/* Aktif */
+.prayer-box.active {
+    background: linear-gradient(180deg, rgba(68,90,121,0.15) 0%, rgba(132,162,201,0.08) 100%);
+    border-top: 5px solid var(--c-2);
+    position: relative;
+    transform: scale(1.02);
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(132,162,201,0.2), inset 0 0 20px rgba(132,162,201,0.05);
+    animation: prayerGlow 3s ease-in-out infinite;
+}
+
+@keyframes prayerGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(132,162,201,0.15); }
+    50% { box-shadow: 0 0 30px rgba(132,162,201,0.3); }
+}
+
+.prayer-box.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--c-3), var(--c-2), var(--c-3));
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+.prayer-box.active .prayer-label { color: var(--c-2); }
+.prayer-box.active .prayer-time { color: var(--c-1); text-shadow: 0 0 12px rgba(132,162,201,0.3); }
+.prayer-box.active .prayer-iqamah { color: var(--c-2); }
+
+/* Dev overlay suppression for clean TV display */
+nextjs-portal, [data-nextjs-toast], #__next-build-watcher {
+    display: none !important;
+}
+
+/* ===== RUNNING TEXT ===== */
+.running-bar {
+    height: 54px;
+    background: linear-gradient(90deg, var(--c-1), #292a4a);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(28,29,55,0.14);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 0;
+}
+
+.running-badge {
+    background: var(--c-2);
+    color: var(--c-5);
+    font-size: 16px;
+    font-weight: 900;
+    padding: 0 26px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.25);
+}
+
+.marquee-wrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+}
+
+.marquee-text {
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--c-5);
+    animation: marquee 30s linear infinite;
+    position: absolute;
+    padding-left: 24px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ===== IQAMAH FULLSCREEN OVERLAY ===== */
+.iqamah-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    /* Soft light theme background matching user reference image */
+    background: radial-gradient(circle at center, #FFFFFF 0%, var(--c-4) 75%, var(--c-4) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.iqamah-overlay.hidden { display: none; }
+
+/* Subtle seamless Islamic pattern overlay */
+.iqamah-pattern-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating 8-pointed gold stars */
+.iqamah-floating-star {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.4));
+}
+.iqamah-floating-star.top-star {
+    top: 75px;
+}
+.iqamah-floating-star.bottom-star {
+    bottom: 60px;
+}
+
+/* Center Content Container */
+.iqamah-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 40px;
+    margin-top: 10px;
+}
+
+/* Mosque name on top */
+.iqamah-mosque {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--c-2);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+/* Title text: "Menuju Iqomah" */
+.iqamah-title-label {
+    font-size: 58px;
+    font-weight: 800;
+    color: var(--c-1);
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Rounded Timer Box matching user reference image */
+.iqamah-timer-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--c-2) 0%, var(--c-1) 100%);
+    border: 3.5px solid var(--c-3);
+    border-radius: 28px;
+    padding: 22px 68px;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22), 0 0 32px rgba(132, 162, 201, 0.35);
+    transition: transform 0.2s ease;
+}
+
+/* Large crisp white timer numbers */
+.iqamah-timer-digits {
+    font-size: 116px;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -2px;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Backward compatibility for any remaining .iqamah-timer */
+.iqamah-timer {
+    font-size: 116px;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+/* Prayer Info Pill */
+.iqamah-info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 10px 28px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.iqamah-info-icon {
+    font-size: 22px;
+}
+
+.iqamah-info-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--c-1);
+    letter-spacing: 1.5px;
+}
+
+/* Hint / Subtitle */
+.iqamah-hint-msg {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--c-2);
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* ===== ADZAN FULLSCREEN OVERLAY ===== */
+.adzan-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998;
+    background: radial-gradient(ellipse at center, #1a3a2a 0%, #0d1f15 50%, #050d09 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: adzanPulse 3s ease-in-out infinite;
+}
+
+.adzan-overlay.hidden { display: none; }
+
+@keyframes adzanPulse {
+    0%, 100% { background: radial-gradient(ellipse at center, #1a3a2a 0%, #0d1f15 50%, #050d09 100%); }
+    50% { background: radial-gradient(ellipse at center, #1e4a32 0%, #0f2819 50%, #060e0a 100%); }
+}
+
+.adzan-content { text-align: center; }
+
+.adzan-mosque {
+    font-size: 32px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.adzan-icon {
+    font-size: 100px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 40px rgba(16, 185, 129, 0.5));
+    animation: adzanIconFloat 4s ease-in-out infinite;
+}
+
+@keyframes adzanIconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.adzan-label {
+    font-size: 100px;
+    font-weight: 900;
+    color: #10B981;
+    letter-spacing: 30px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 0 60px rgba(16, 185, 129, 0.6), 0 0 120px rgba(16, 185, 129, 0.3);
+    animation: adzanGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes adzanGlow {
+    from { text-shadow: 0 0 60px rgba(16, 185, 129, 0.6), 0 0 120px rgba(16, 185, 129, 0.3); }
+    to { text-shadow: 0 0 80px rgba(16, 185, 129, 0.8), 0 0 150px rgba(16, 185, 129, 0.5); }
+}
+
+.adzan-prayer-name {
+    font-size: 72px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 10px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    margin-bottom: 16px;
+}
+
+.adzan-time {
+    font-size: 42px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+.adzan-hint {
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(16, 185, 129, 0.7);
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.app-container.adzan-alert {
+    animation: flash 1.5s infinite;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* ===== MODE SHALAT (LAYAR HITAM) ===== */
+.shalat-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    background: #000000; /* Hitam pekat agar hemat energi dan tidak menyilaukan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shalat-overlay.hidden { display: none; }
+
+.shalat-content {
+    text-align: center;
+}
+
+.shalat-icon {
+    font-size: 80px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.shalat-text {
+    font-size: 64px;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.shalat-sub {
+    font-size: 32px;
+    font-weight: 600;
+    color: #888888;
+}
+
+/* ===== PRE-ADZAN & REST MODE ===== */
+.pre-adzan-blink {
+    animation: textFlash 1s infinite alternate;
+    color: #FF4136 !important;
+}
+
+@keyframes textFlash {
+    from { opacity: 1; text-shadow: 0 0 20px #FF4136; }
+    to { opacity: 0.5; text-shadow: none; }
+}
+
+body.rest-mode::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #000;
+    z-index: 999999;
+}
+
+/* ===== CUSTOM SLIDES (QRIS, KAJIAN, KEUANGAN) ===== */
+.slide-custom {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   1. SLIDE KAJIAN (LUXURY ISLAMIC BROADCAST FLYER)
+   ========================================================= */
+.slide-kajian-poster {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 88% 18%, rgba(212, 175, 55, 0.16) 0%, transparent 45%),
+                radial-gradient(circle at 12% 82%, rgba(30, 58, 138, 0.25) 0%, transparent 50%),
+                linear-gradient(145deg, #070914 0%, #0F1326 50%, #080A14 100%);
+    padding: 26px 36px 20px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.45);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.65);
+}
+
+/* Islamic Geometric Background Ambient Watermark */
+.slide-kajian-poster::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.kaj-poster-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.35);
+    flex-shrink: 0;
+}
+
+.kaj-gold-badge {
+    background: linear-gradient(135deg, #D4AF37 0%, #F5DE88 50%, #C5A059 100%);
+    color: #121324;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+}
+
+.kaj-poster-tagline {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #F5DE88;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 1. Title Block: Spans Full Width */
+.kaj-title-block {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.kaj-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #F5DE88;
+    text-transform: uppercase;
+}
+
+.kaj-hero-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.22;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.kaj-hero-pills {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+    flex-wrap: wrap;
+}
+
+.kaj-pill-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #E2E8F0;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+}
+
+.kaj-pill-item.gold {
+    background: rgba(212, 175, 55, 0.16);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    color: #F5DE88;
+}
+
+.kaj-pill-item.internal {
+    background: rgba(148, 163, 184, 0.14);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #CBD5E1;
+}
+
+/* 2. Speaker Row: Full Width Banner Directly Below Title */
+.kaj-speaker-row-full {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 74px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(20, 24, 48, 0.85) 100%);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    border-left: 6px solid #D4AF37;
+    border-radius: 16px;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.kaj-speaker-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    flex: 1;
+}
+
+.kaj-speaker-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F5DE88 0%, #D4AF37 50%, #99731E 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+}
+
+.kaj-speaker-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    flex: 1;
+    gap: 2px;
+}
+
+.kaj-speaker-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #F5DE88;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.kaj-speaker-name {
+    font-size: 23px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.25;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kaj-speaker-role-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #F5DE88;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* 3. Schedule Grid: 3 Equal Columns (Hari, Waktu, Lokasi) */
+.kaj-schedule-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.kaj-grid-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+    min-height: 104px;
+    box-sizing: border-box;
+}
+
+.kaj-card-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.08) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.kaj-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+}
+
+.kaj-card-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #F5DE88;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.kaj-card-value {
+    font-size: 19px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+/* 4. Notes & Jamaah Preparation Banner (Full Width) */
+.kaj-notes-banner {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    min-height: 74px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.kaj-notes-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.24) 0%, rgba(212, 175, 55, 0.08) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.kaj-notes-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+}
+
+.kaj-notes-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #F5DE88;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.kaj-notes-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F1F5F9;
+    line-height: 1.38;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 5. Poster Footer */
+.kaj-poster-footer {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+
+.kaj-footer-quote {
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================
+   2. SLIDE QRIS (HORIZONTAL 2-COLUMN PROPORTIONAL CARD)
+   ========================================================= */
+.slide-qris-card {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+    padding: 28px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.qris-left-wrap {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.qris-box-frame {
+    background: #FFFFFF;
+    padding: 16px;
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(28, 29, 55, 0.12);
+    border: 2px solid var(--c-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    height: 340px;
+}
+
+.qris-box-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.qris-scan-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-2);
+    text-align: center;
+    line-height: 1.4;
+    background: rgba(68, 90, 121, 0.08);
+    padding: 6px 18px;
+    border-radius: 9999px;
+}
+
+.qris-right-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    height: 100%;
+}
+
+.qris-heading-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.qris-top-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--c-1) 0%, var(--c-2) 100%);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 5px 16px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    width: fit-content;
+    box-shadow: 0 4px 12px rgba(28, 29, 55, 0.2);
+}
+
+.qris-main-title {
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--c-1);
+    line-height: 1.2;
+    margin: 4px 0 2px;
+}
+
+.qris-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-2);
+}
+
+.qris-bank-card {
+    background: #FFFFFF;
+    border: 2px solid var(--c-4);
+    border-left: 6px solid var(--c-2);
+    border-radius: 16px;
+    padding: 14px 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.qris-bank-badge {
+    font-size: 10px;
+    font-weight: 800;
+    color: #047857;
+    background: #D1FAE5;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    letter-spacing: 1px;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.qris-bank-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--c-2);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.qris-account-no {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--c-1);
+    letter-spacing: 2.5px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+}
+
+.qris-account-holder {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-3);
+}
+
+.qris-steps-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(68, 90, 121, 0.06);
+    border: 1px solid rgba(68, 90, 121, 0.12);
+    border-radius: 12px;
+    padding: 8px 16px;
+}
+
+.qris-step-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-1);
+}
+
+.qris-step-num {
+    background: var(--c-2);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.qris-step-arrow {
+    color: var(--c-3);
+    font-size: 13px;
+}
+
+.qris-quote-banner {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.04) 100%);
+    border: 1.5px solid rgba(16, 185, 129, 0.25);
+    border-left: 4px solid #10B981;
+    border-radius: 12px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-style: italic;
+    color: #065F46;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   3. SLIDE KEUANGAN (COMPACT PROPORTIONAL KAS CARD)
+   ========================================================= */
+.slide-keuangan-card {
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.keu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--c-4);
+}
+
+.keu-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--c-1);
+    letter-spacing: -0.5px;
+}
+
+.keu-period-badge {
+    background: var(--c-4);
+    color: var(--c-1);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.keu-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    margin: 12px 0;
+}
+
+.keu-column {
+    background: #F8FAFC;
+    border: 1.5px solid var(--c-4);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+}
+
+.keu-col-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid rgba(0,0,0,0.06);
+    margin-bottom: 8px;
+}
+
+.keu-col-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.keu-col-title.in { color: #059669; }
+.keu-col-title.out { color: #DC2626; }
+
+.keu-col-total {
+    font-size: 16px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+}
+
+.keu-col-total.in { color: #059669; }
+.keu-col-total.out { color: #DC2626; }
+
+.keu-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.keu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-1);
+    padding: 4px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+}
+
+.keu-row-desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+
+.keu-row-val {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+
+.keu-footer-banner {
+    background: linear-gradient(135deg, var(--c-1) 0%, #292A4A 100%);
+    border-radius: 16px;
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(28,29,55,0.2);
+    border-top: 3px solid #D4AF37;
+}
+
+.keu-footer-label {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--c-4);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.keu-footer-val {
+    font-size: 38px;
+    font-weight: 900;
+    color: #FFFFFF;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
